@@ -15,13 +15,13 @@ func init() {
 	}
 
 	log.SetOutput(errorLog)
-	log.SetFlags(log.)
+	// 時刻と時刻のマイクロ秒、ディレクトリパスを含めたファイル名を出力
+	log.SetFlags(log.Ltime | log.Lmicroseconds | log.Llongfile)
 	log.SetPrefix("[error]:")
 }
 
 func main() {
 	r := router.InitRouter()
-	log.Panic("test")
 	if err := r.Run(); err != nil {
 		log.Panic(err)
 	}
