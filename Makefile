@@ -29,3 +29,7 @@ list:
 .PHONY: generate
 generate:
 	go generate ./...
+
+.PHONY: test
+test:
+	go test -cover ./...
