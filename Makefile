@@ -6,7 +6,7 @@ binfile=./bin
 build: generate
 	# TODO: @が必要な理由を調べる。(@がないと動かない。)
 	@if [ -e ${binfile} ]; then \
-		rm -fr ${binfile} & makdir ${binfile}; \
+		rm -fr ${binfile} && mkdir ${binfile} ; \
 	fi 
 	go build -o ./${binfile}/app ./
 
