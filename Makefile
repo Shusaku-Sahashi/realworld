@@ -3,15 +3,15 @@
 binfile=./bin
 
 .PHONY: build
-build: ## go buildを実行する。
+build: generate
 	# TODO: @が必要な理由を調べる。(@がないと動かない。)
 	@if [ -e ${binfile} ]; then \
 		rm -fr ${binfile} & makdir ${binfile}; \
 	fi 
-	go build -o ${binfile}/app ./
+	go build -o ./${binfile}/app ./
 
 .PHONY: run
-run:
+run: generate
 	go run ./
 
 .PHONY: lint
@@ -25,3 +25,7 @@ fmt:
 .PHONY: list 
 list:
 	go list -m all
+
+.PHONY: generate
+generate:
+	go generate ./...
