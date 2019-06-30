@@ -29,7 +29,8 @@ func DBConn() *gorm.DB {
 	// NOTE: https://github.com/bxcodec/go-clean-arch/blob/master/main.go#L42
 	val := url.Values{}
 	val.Add("parseTime", "1")
-	val.Add("loc", "Asia/Japan")
+	// NOTE: 一旦Localに設定。
+	val.Add("loc", "Local")
 	dsn := fmt.Sprintf("%s?%s", connection, val.Encode())
 
 	_db, err := gorm.Open("mysql", dsn)
