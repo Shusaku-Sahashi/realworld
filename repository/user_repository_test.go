@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/app/realworld/model"
+	"github.com/app/realworld/model/user"
 
 	"github.com/DATA-DOG/go-sqlmock"
 	_ "github.com/go-sql-driver/mysql"
@@ -40,7 +40,7 @@ func (s *userRepositorySuite) SetupTest() {
 }
 
 func (s *userRepositorySuite) TestGetId() {
-	user := model.User{
+	user := user.User{
 		ID:       1,
 		Username: "Joe",
 		Email:    "example@sample.com",
@@ -65,7 +65,7 @@ func (s *userRepositorySuite) TestGetId() {
 }
 
 func (s *userRepositorySuite) TestCreate() {
-	user := model.User{
+	user := user.User{
 		ID:       1,
 		Username: "Joe",
 		Email:    "example@sample.com",

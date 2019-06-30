@@ -1,7 +1,8 @@
 package repository
 
 import (
-	"github.com/app/realworld/model"
+	"github.com/app/realworld/model/user"
+
 	"github.com/jinzhu/gorm"
 )
 
@@ -15,13 +16,13 @@ func NewUserRepository(db *gorm.DB) *UserRepository {
 	}
 }
 
-func (rep *UserRepository) GetById(id uint) (*model.User, error) {
-	user := new(model.User)
+func (rep *UserRepository) GetById(id uint) (*user.User, error) {
+	user := new(user.User)
 	err := rep.DB.Find(user, "where = ?", id).Error
 	return user, err
 }
 
-func (rep *UserRepository) Create(user model.User) (*model.User, error) {
+func (rep *UserRepository) Create(user user.User) (*user.User, error) {
 	err := rep.DB.Create(user).Error
 	return &user, err
 }
