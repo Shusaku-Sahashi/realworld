@@ -8,8 +8,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-
-
 /*
 gormのcolum情報からdbのテーブル名称を全て取得する。
 tagの取得に関しては下記を参照。
@@ -36,8 +34,8 @@ func GetDBFields(m interface{}) []string {
 }
 
 // testUtilのテスト
-func TestGetDBFields (t *testing.T) {
-	
+func TestGetDBFields(t *testing.T) {
+
 	type testUser struct {
 		ID       uint   `gorm:"column:id;primary_key"`
 		Username string `gorm:"column:user_name"`
@@ -46,7 +44,7 @@ func TestGetDBFields (t *testing.T) {
 		Bio      string `gorm:"column:bio"`
 	}
 
-	fields := GetDBFields(testUser{})		
+	fields := GetDBFields(testUser{})
 
 	assert.Equal(t, "id", fields[0])
 	assert.Equal(t, "user_name", fields[1])
