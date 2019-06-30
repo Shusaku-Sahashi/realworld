@@ -1,4 +1,4 @@
-package model
+package user
 
 type User struct {
 	ID       uint   `gorm:"column:id;primary_key"`
@@ -7,4 +7,8 @@ type User struct {
 	Password string `gorm:"column:password"`
 	Bio      string `gorm:"column:bio"`
 	// Image    URL    `gorm:"image"`
+}
+
+func (u *User) getLoginInfo() LoginInfo {
+	return NewLoginInfo(u)
 }

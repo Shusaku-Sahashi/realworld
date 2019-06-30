@@ -4,6 +4,10 @@ import (
 	"log"
 	"os"
 
+	"github.com/app/realworld/handler"
+
+	"github.com/app/realworld/router"
+
 	"github.com/app/realworld/db"
 
 	"github.com/app/realworld/config"
@@ -20,10 +24,15 @@ func main() {
 	db := db.DBConn()
 	defer db.Close()
 
-	//r := handler.InitRouter()
-	//if err := r.Run(); err != nil {
-	//log.Panic(err)
-	//}
+	r := router.New()
+
+	// usecaseを登録
+	h := handler.Handler{}
+	h.Register(r)
+
+	if err := r.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func setLogger() {
