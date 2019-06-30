@@ -32,7 +32,7 @@ func TestGetDBConf(t *testing.T) {
 
 	t.Run("yamlで記述された特定のファイルを読み込むことが出来る。", func(t *testing.T) {
 
-		srvConf = serverConf{
+		srvConf := ServerConf{
 			EnvName:    dev.String(),
 			DbConfPath: fmt.Sprint(filename),
 		}

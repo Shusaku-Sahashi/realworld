@@ -16,6 +16,7 @@ import (
 https://github.com/go-yaml/yaml
 */
 
+// TODO: フレキシブルにするにはenvで指定されたconf.{環境名}.ymlファイルを読み込んだ方が良い気がする。
 //go:generate stringer -type=envType
 type envType int
 
@@ -24,12 +25,12 @@ const (
 	prod
 )
 
-type serverConf struct {
+type ServerConf struct {
 	EnvName    string
 	DbConfPath string
 }
 
-var srvConf serverConf
+var SrvConf ServerConf
 var DBConfig DBConf
 
 type DBConf struct {
@@ -59,17 +60,18 @@ func InitializeConf() {
 	}
 
 	// srvConfを初期化
-	srvConf = serverConf{
+	SrvConf = ServerConf{
 		EnvName:    dev.String(),
 		DbConfPath: filepath.Join(path, "config", "conf_file", "conf."+dev.String()+".yml"),
 	}
 
 	// dbの設定の初期化を行う。
-	DBConfig = srvConf.GetDBConf()
+	DBConfig = SrvConf.GetDBConf()
+
 }
 
 // TODO: 各ファイルの読み込み方は同じになる想定なのでこの読み出し方法を抽象化して、init時に全ての設定ファイルが読み込まれる様にする。
-func (cf serverConf) GetDBConf() DBConf {
+func (cf ServerConf) GetDBConf() DBConf {
 	data, err := ioutil.ReadFile(cf.DbConfPath)
 	if err != nil {
 		log.Fatalf("db confing file can not be read. err: %v", err)
