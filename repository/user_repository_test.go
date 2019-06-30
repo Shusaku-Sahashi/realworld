@@ -1,4 +1,4 @@
-package repositories
+package repository
 
 import (
 	"database/sql"
@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/app/realworld/models"
+	"github.com/app/realworld/model"
 
 	"github.com/DATA-DOG/go-sqlmock"
 	_ "github.com/go-sql-driver/mysql"
@@ -40,7 +40,7 @@ func (s *userRepositorySuite) SetupTest() {
 }
 
 func (s *userRepositorySuite) TestGetId() {
-	user := models.User{
+	user := model.User{
 		ID:       1,
 		Username: "Joe",
 		Email:    "example@sample.com",
@@ -65,7 +65,7 @@ func (s *userRepositorySuite) TestGetId() {
 }
 
 func (s *userRepositorySuite) TestCreate() {
-	user := models.User{
+	user := model.User{
 		ID:       1,
 		Username: "Joe",
 		Email:    "example@sample.com",
