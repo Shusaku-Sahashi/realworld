@@ -20,7 +20,7 @@ lint:
 
 .PHONY: fmt
 fmt:
-	go fmt ./
+	go fmt ./...
 
 .PHONY: list 
 list:
